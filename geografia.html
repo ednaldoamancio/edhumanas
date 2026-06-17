@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdHumanas - Geografia</title>
+    <style>
+        /* Variáveis de cores temáticas (Terra, Natureza, Oceanos) */
+        :root {
+            --cor-fundo: #eef2f3;
+            --cor-primaria: #2E7D32; /* Verde floresta */
+            --cor-secundaria: #1565C0; /* Azul oceano */
+            --cor-destaque: #81C784;
+            --cor-texto: #333333;
+            --cor-branco: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+        }
+
+        /* Cabeçalho Temático */
+        header {
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: var(--cor-branco);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* Navegação superior */
+        .top-nav {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .btn-voltar {
+            text-decoration: none;
+            color: var(--cor-secundaria);
+            font-weight: bold;
+            padding: 8px 16px;
+            border: 2px solid var(--cor-secundaria);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-voltar:hover {
+            background-color: var(--cor-secundaria);
+            color: var(--cor-branco);
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Grid das Séries */
+        .grid-series {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Cartão de cada Série */
+        .card-serie {
+            background: var(--cor-branco);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--cor-primaria);
+        }
+
+        .card-serie h2 {
+            text-align: center;
+            color: var(--cor-primaria);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--cor-fundo);
+            padding-bottom: 10px;
+        }
+
+        /* Botões das Turmas */
+        .turmas-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-turma {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            text-decoration: none;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: 1px solid #d1d9e6;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-turma:hover {
+            background-color: var(--cor-destaque);
+            color: var(--cor-branco);
+            border-color: var(--cor-destaque);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="index.html" class="btn-voltar">← Voltar para Página Inicial</a>
+    </div>
+
+    <header>
+        <h1>Geografia</h1>
+        <p>Explorando o espaço geográfico e as dinâmicas do nosso planeta</p>
+    </header>
+
+    <div class="container">
+        <div class="grid-series">
+            
+            <div class="card-serie">
+                <h2>GEOGRAFIA 1ª SÉRIE</h2>
+                <div class="turmas-lista">
+                    <a href="#" class="btn-turma">1º A</a>
+                    <a href="#" class="btn-turma">1º B</a>
+                    <a href="#" class="btn-turma">1º C</a>
+                    <a href="#" class="btn-turma">1º D</a>
+                </div>
+            </div>
+
+            <div class="card-serie">
+                <h2>GEOGRAFIA 2ª SÉRIE</h2>
+                <div class="turmas-lista">
+                    <a href="#" class="btn-turma">2º A</a>
+                    <a href="#" class="btn-turma">2º B</a>
+                    <a href="#" class="btn-turma">2º C</a>
+                    <a href="#" class="btn-turma">2º D</a>
+                    <a href="#" class="btn-turma">2º E</a>
+                </div>
+            </div>
+
+            <div class="card-serie">
+                <h2>GEOGRAFIA 3ª SÉRIE</h2>
+                <div class="turmas-lista">
+                    <a href="#" class="btn-turma">3º A</a>
+                    <a href="#" class="btn-turma">3º B</a>
+                    <a href="#" class="btn-turma">3º C</a>
+                    <a href="#" class="btn-turma">3º D</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>EdHumanas - Conectando o conhecimento à realidade.</p>
+    </footer>
+
+</body>
+</html>
