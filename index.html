@@ -3,70 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EdHumanas</title>
+    <title>EdHumanas - Ciências Humanas para Transformar o Mundo</title>
+
+    <!-- ************ INÍCIO DA ADIÇÃO DO FAVICON ************ -->
+    <!-- Define a imagem fornecida como o ícone da aba do navegador (favicon) -->
+    <!-- O tamanho 32x32 é o padrão, e o apple-touch-icon é para dispositivos iOS -->
+    <link rel="icon" type="image/png" href="edhumanas.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="edhumanas.png">
+    <!-- ************* FIM DA ADIÇÃO DO FAVICON ************* -->
+
     <style>
-        /* Estilos básicos para deixar a página bonita e responsiva */
+        /* Novo sistema de cores baseado na paleta do logotipo edhumanas.png */
+        :root {
+            --primary-teal: #1e6091;  /* Teal-azul escuro do corpo do texto do logo */
+            --accent-teal: #159cc9;   /* Teal-azul brilhante da parte superior do logo */
+            --accent-green: #38b000;  /* Verde-lima vibrante da parte superior do 'E' */
+            --light-teal-bg: #f0f8ff; /* Fundo suave off-white com um toque de teal */
+            --text-dark: #333;
+            --white: #ffffff;
+        }
+
+        /* Estilos básicos re-estilizados para um visual limpo e arredondado */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', 'Arial', sans-serif; /* Fonte mais moderna */
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: var(--light-teal-bg);
+            color: var(--text-dark);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        
+
+        /* Cabeçalho re-estilizado com logo e título */
         header {
-            background-color: #2c3e50;
-            color: white;
+            background-color: var(--primary-teal);
+            color: var(--white);
             padding: 1.5rem 2rem;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Espaço entre o logo e o texto */
+            border-bottom: 4px solid var(--accent-green); /* Linha de destaque verde-lima */
+        }
+
+        header img {
+            max-height: 60px; /* Limita a altura do logo */
+            width: auto;
+            border-radius: 8px; /* Arredondamento suave no próprio logo */
+        }
+
+        header .branding {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
+            font-weight: 700;
         }
 
-        /* Menu de navegação */
+        header p.tagline {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Menu de navegação com cantos arredondados e novas cores */
         nav {
-            background-color: #34495e;
+            background-color: var(--accent-teal);
             padding: 1rem 2rem;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 15px;
+            border-radius: 0 0 15px 15px; /* Cantos inferiores arredondados */
         }
 
         nav a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
             font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            padding: 8px 18px;
+            border-radius: 10px; /* Alvos de clique mais arredondados */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         nav a:hover {
-            background-color: #2980b9;
+            background-color: var(--accent-green);
+            color: var(--white);
         }
 
-        /* Área principal de conteúdo */
+        /* Área principal de conteúdo re-estilizada com mais polimento */
         .container {
             max-width: 900px;
-            margin: 30px auto;
-            background: white;
-            padding: 2rem 3rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 8px;
+            margin: -15px auto 40px auto; /* Puxa levemente para baixo do nav */
+            background: var(--white);
+            padding: 3rem 4rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08); /* Sombra mais suave e elegante */
+            border-radius: 15px; /* Arredondamento maior */
         }
 
         h2 {
-            color: #2c3e50;
+            color: var(--primary-teal);
+            border-bottom: 3px solid var(--accent-green); /* Linha verde-lima sob h2 */
+            padding-bottom: 12px;
+            margin-bottom: 30px;
         }
 
         h3 {
-            color: #2980b9;
-            margin-top: 30px;
+            color: var(--accent-teal);
+            margin-top: 40px;
         }
 
         ul {
@@ -75,42 +125,61 @@
         }
 
         ul li {
-            margin-bottom: 10px;
-            padding-left: 20px;
+            margin-bottom: 15px;
+            padding-left: 30px;
             position: relative;
         }
 
         ul li::before {
-            content: "☑";
-            color: #2980b9;
+            content: "✓"; /* Usando o símbolo de verificação correto */
+            color: var(--accent-green);
             position: absolute;
             left: 0;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        /* Estilo para a citação de Paulo Freire */
+        /* Estilo para a citação re-estilizado com cores suaves */
         .citacao {
             font-style: italic;
             color: #555;
-            background-color: #ecf0f1;
-            border-left: 5px solid #3498db;
-            padding: 15px;
-            margin: 30px 0;
-            border-radius: 0 4px 4px 0;
+            background-color: #f7f9fa; /* Fundo cinza-teal muito claro */
+            border-left: 8px solid var(--accent-teal);
+            padding: 25px;
+            margin: 40px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .citacao strong {
+            color: var(--primary-teal);
         }
 
         .destaque {
             font-weight: bold;
-            color: #2c3e50;
+            color: var(--primary-teal);
         }
+
+        /* Rodapé para um visual completo e profissional */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-teal);
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
     </style>
 </head>
 <body>
-
     <header>
-        <h1>EdHumanas</h1>
+        <!-- ADICIONADO: O logo edhumanas.png agora aparece no cabeçalho -->
+        <img src="edhumanas.png" alt="Logo EdHumanas">
+        <div class="branding">
+            <h1>EdHumanas</h1>
+            <p class="tagline">Ciências Humanas para Transformar o Mundo</p>
+        </div>
     </header>
-
     <nav>
         <a href="#">Página Inicial</a>
         <a href="geografia.html">Geografia</a>
@@ -119,7 +188,6 @@
         <a href="horario_2026.html">Horário</a>
         <a href="planejamento.html">Plano de Aula 2026</a>
     </nav>
-
     <div class="container">
         <h2>Boas-vindas ao edhumanas.vercel.app! É um prazer ter você por aqui.</h2>
         
@@ -142,10 +210,12 @@
 
         <p>Estamos aqui para ser a sua ponte entre o conhecimento e a prática. Sinta-se à vontade para explorar nossos resumos, videoaulas e materiais de apoio.</p>
         
-        <p class="destaque" style="text-align: center; font-size: 1.2rem; margin-top: 30px;">
+        <p class="destaque" style="text-align: center; font-size: 1.2rem; margin-top: 40px;">
             Prepare-se, conecte-se e bons estudos!
         </p>
     </div>
-
+    <footer>
+        <p>&copy; 2026 EdHumanas - Todos os direitos reservados. Feito com paixão pela educação.</p>
+    </footer>
 </body>
 </html>
