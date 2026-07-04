@@ -46,6 +46,13 @@
         table.tabela-pei th, table.tabela-pei td { border: 1px solid #bdc3c7; padding: 8px; vertical-align: top; }
         table.tabela-pei th { background-color: #f8f9f9; text-align: left; }
         
+        /* Cabeçalho do documento PEI com logos */
+        .cabecalho-pei { width: 100%; border: none; margin-bottom: 12px; }
+        .cabecalho-pei td { border: none; vertical-align: middle; padding: 0; }
+        .cabecalho-logo { width: 70px; text-align: center; }
+        .cabecalho-logo img { max-height: 55px; max-width: 65px; object-fit: contain; }
+        .cabecalho-texto { text-align: center; line-height: 1.25; }
+
         .topico { font-weight: bold; margin-top: 20px; margin-bottom: 5px; background-color: #ecf0f1; padding: 6px; border-left: 4px solid #34495e; }
         .caixa-texto { border: 1px solid #bdc3c7; min-height: 50px; padding: 10px; margin-bottom: 15px; background-color: #fff; }
         
@@ -177,13 +184,15 @@
                 </div>
                 
                 <div id="doc-pei" class="pei-doc">
-                    <table style="width:100%; border:none; margin-bottom:20px;">
+                    <table class="cabecalho-pei">
                         <tr>
-                            <td style="width:100%; border:none; text-align:center; vertical-align:middle; line-height:1.2;">
+                            <td class="cabecalho-logo"><img src="logo_sp.png" alt="Logo Governo de São Paulo"></td>
+                            <td class="cabecalho-texto">
                                 <div style="font-weight:bold; font-size:14px;">SECRETARIA DE ESTADO DA EDUCAÇÃO</div>
                                 <div style="font-weight:bold; font-size:14px; margin:4px 0;">E.E. RECANTO VERDE SOL – URE LESTE 3</div>
                                 <div style="font-weight:bold; font-size:15px; margin-top:8px;">ANEXO IV – PLANO EDUCACIONAL INDIVIDUALIZADO – PEI</div>
                             </td>
+                            <td class="cabecalho-logo"><img src="logo_escola_recanto.jpg" alt="Logo E.E. Recanto Verde Sol"></td>
                         </tr>
                     </table>
 
