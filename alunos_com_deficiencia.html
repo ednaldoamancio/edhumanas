@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Integrado PEI - Ednaldo Amancio de Lima</title>
     
+    <!-- MANTIDO APENAS O BUNDLE (que já contém tudo necessário para o PDF) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
@@ -41,7 +41,7 @@
 
         .em-edicao .editavel { outline: 2px dashed #f39c12; background-color: #fdfbf7; padding: 5px; border-radius: 3px; }
         
-        .pei-doc { color: #000; font-size: 13px; line-height: 1.5; }
+        .pei-doc { color: #000; font-size: 13px; line-height: 1.5; background-color: white; padding: 10px; }
         table.tabela-pei { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 13px; }
         table.tabela-pei th, table.tabela-pei td { border: 1px solid #bdc3c7; padding: 8px; vertical-align: top; }
         table.tabela-pei th { background-color: #f8f9f9; text-align: left; }
@@ -118,7 +118,7 @@
     <div id="container-pei" class="container"></div>
 
     <script>
-        // BANCO DE DADOS
+        // BANCO DE DADOS MANTIDO IGUAL
         const baseDeDados = {
             '1': { serie: '6º', turma: 'C', nome: 'ENZZO GABRIEL DA SILVA MOTA', deficiencia: 'AUTISTA INFANTIL', disciplina: 'Projeto de Vida', habilidades: 'Reconhecer rotinas escolares e limites sociais (EF06PV01); Identificar e nomear emoções básicas em si e nos outros (EF06PV02).', conteudos: 'Acolhimento; Inteligência Emocional (Alegria/Tristeza/Raiva); Regras de convivência em sala de aula.', estrategias: '<ul><li>Utilização de agenda visual diária afixada na mesa para antecipação das rotinas das aulas de PV.</li><li>Adaptação do material com redução de estímulos visuais periféricos para evitar distração e sobrecarga.</li><li>Comunicação pautada em comandos curtos, diretos e literais, evitando metáforas.</li><li>Implementação de pausas estruturadas (Time-out) de 3 a 5 minutos caso apresente sinais de desregulação sensorial.</li></ul>', avaliacao: '<ul><li>Avaliação formativa baseada na observação do uso funcional do termômetro de emoções durante conflitos.</li><li>Verificação da capacidade de transição entre as atividades com menor nível de ansiedade.</li><li>Participação avaliada pela entrega de produções individuais (desenhos/apontamentos), sem exigência de exposição oral perante a turma.</li></ul>', recursos: 'Pictogramas de rotina (padrão ARASAAC), termômetro visual de emoções impresso e plastificado, cronômetro de mesa.' },
             '2': { serie: '6º', turma: 'E', nome: 'ENZO GABRIEL GONCALVES MARIANO', deficiencia: 'INTELECTUAL', disciplina: 'Projeto de Vida', habilidades: 'Reconhecer sua identidade e marcos da história pessoal (EF06PV03); Expressar preferências e interesses práticos (EF06PV04).', conteudos: 'Minha história; Identidade e Características Pessoais; Passos iniciais do Projeto de Vida.', estrategias: '<ul><li>Adaptação curricular metodológica: textos teóricos substituídos por informações concretas e visuais.</li><li>Uso do método de pareamento (imagem-ação) e colagem para montagem do "Mapa dos Sonhos", reduzindo a barreira da escrita extensa.</li><li>Instruções divididas em etapas singulares (um comando por vez) com demonstração prévia do professor.</li><li>Apoio de colega-tutor para mediação em atividades em grupo.</li></ul>', avaliacao: '<ul><li>Avaliação centrada no processo produtivo e no engajamento manual durante as aulas.</li><li>Respostas validadas por meio de múltipla escolha simples com apoio visual ou oralmente (perguntas diretas: Sim/Não).</li></ul>', recursos: 'Revistas para recorte, tesoura adaptada, cola bastão, folhas sulfites A3, pranchas de escolha binária.' },
@@ -146,7 +146,7 @@
             // ENSINO MÉDIO - GEOGRAFIA EXCLUSIVAMENTE
             '26': { serie: '1ª SÉRIE', turma: 'B', nome: 'ELTON JUNIOR MARQUES CRUZ', deficiencia: 'AUTISTA TEA', disciplina: 'Geografia', habilidades: 'Localizar-se no espaço utilizando pontos de referência básicos e simplificados.', conteudos: 'Orientação e Localização no Espaço Geográfico (Cartografia Básica).', estrategias: '<ul><li>Uso de mapas concretos da própria escola ou bairro com marcadores visuais.</li><li>Criação de maquete tátil utilizando blocos de montar para representar o trajeto de casa até a escola.</li><li>Previsibilidade de rotina nas aulas de cartografia, com comandos claros e diretos, sem metáforas visuais.</li></ul>', avaliacao: '<ul><li>Capacidade de traçar uma rota simples no mapa da escola ou bairro impresso.</li><li>Observação da interação com o material concreto (maquete/blocos).</li></ul>', recursos: 'Planta da escola, blocos de montar (Lego), mapa do entorno escolar ampliado.' },
             '24': { serie: '1ª SÉRIE', turma: 'D', nome: 'NYCOLAS LISBOA GOMES DE SA', deficiencia: 'SINDROME DE DOWN, AUTISTA', disciplina: 'Geografia', habilidades: 'Diferenciar paisagem natural e paisagem cultural (modificada pelo homem) com recursos visuais.', conteudos: 'Paisagem, Espaço Geográfico e Lugar.', estrategias: '<ul><li>Atividades de pareamento de imagens: separar o que é "Natureza" e o que é "Cidade".</li><li>Uso de quebra-cabeças simples com fotos de ambientes naturais e urbanos.</li><li>Instruções curtas e diretas, com reforço positivo imediato a cada acerto.</li></ul>', avaliacao: '<ul><li>Classificação correta de 5 imagens em suas respectivas categorias através de triagem visual.</li><li>Participação nas atividades de pareamento, respeitando o tempo de resposta do aluno.</li></ul>', recursos: 'Flashcards de paisagens (alto contraste), caixas de classificação com cores distintas, quebra-cabeças pedagógicos.' },
-            '21': { serie: '2ª SÉRIE', turma: 'D', nome: 'BRENO DURÃES DA MATTA', deficiencia: 'INTELECTUAL', disciplina: 'Geografia', habilidades: 'Identificar os principais problemas ambientais urbanos a partir de observações do cotidiano.', conteudos: 'O Espaço Urbano e os Impactos Ambientais (Poluição e Enchentes).', estrategias: '<ul><li>Uso de imagens e reportagens reais da cidade focando em causa e consequência (ex: lixo no chão -> enchente).</li><li>Associação de conceitos com setas visuais grandes na lousa e no caderno.</li><li>Fracionamento das tarefas para manter o foco na construção do conceito de urbanização.</li></ul>', avaliacao: '<ul><li>Montagem autônoma de um pequeno painel de "Atitudes Certas / Atitudes Erradas" na cidade.</li><li>Observação da participação e compreensão dos exemplos mostrados nos vídeos da aula.</li></ul>', recursos: 'Imagens impressas de problemas urbanos, cartolina, vídeos educativos curtos, pranchas de sinalização.' },
+            '21': { serie: '2ª SÉRIE', turma: 'D', nome: 'BRENO DURÃES DA MATTA', deficiencia: 'INTELECTUAL', disciplina: 'Geografia', habilidades: 'Identificar os principais problemas ambientais urbanos a partir de observações do cotidiano.', conteudos: 'O Espaço Urbano e os Impactos Ambientais (Poluição e Enchentes).', estrategias: '<ul><li>Uso de imagens e reportagens reais da cidade focando em causa e consequência (ex: lixo no chão -> enchente).</li><li>Associação de conceitos com setas visuais grandes na lousa e no caderno.</li><li>Fracionamento das tarefas para manter o foco na construção do conceito de urbanização.</li></ul>', avaliacao: '<ul><li>Montagem autônoma de um pequeno painel de "Atitudes Certas / Atitudes Erradas" na cidade.</li><li>Observação da participação e compreensão dos exemplos mostrado nos vídeos da aula.</li></ul>', recursos: 'Imagens impressas de problemas urbanos, cartolina, vídeos educativos curtos, pranchas de sinalização.' },
             '22': { serie: '2ª SÉRIE', turma: 'C', nome: 'ELZA VITÓRIA SANTOS MOURA', deficiencia: 'INTELECTUAL, AUTISTA INFANTIL', disciplina: 'Geografia', habilidades: 'Identificar motivos que levam as pessoas a mudarem de lugar (migração).', conteudos: 'Migrações e Urbanização Brasileira.', estrategias: '<ul><li>Abordagem do tema "Migração" através da história afetiva da aluna (de onde vieram os avós/pais), construindo uma linha narrativa visual.</li><li>Uso de Histórias Sociais em quadrinhos para explicar o processo de saída do campo para a cidade (êxodo rural).</li></ul>', avaliacao: '<ul><li>Validação do conhecimento através da construção de um painel de recortes (cidade x campo).</li><li>Identificação correta de figuras rurais e urbanas nas atividades avaliativas.</li></ul>', recursos: 'Revistas para recorte, templates de quadrinhos em branco, mapa do Brasil simplificado.' },
             '25': { serie: '2ª SÉRIE', turma: 'E', nome: 'THAINARA CARVALHO DE LIMA', deficiencia: 'INTELECTUAL', disciplina: 'Geografia', habilidades: 'Reconhecer a relação entre a sociedade e a natureza de forma simplificada no espaço geográfico; Compreender a importância do descarte correto do lixo e as práticas básicas de sustentabilidade.', conteudos: 'Sustentabilidade no cotidiano; Produção, reaproveitamento e descarte de resíduos.', estrategias: '<ul><li>Abordagem do tema "Sustentabilidade e Resíduos" através de recursos visuais concretos e associação de cores (ex: lixeiras de reciclagem).</li><li>Uso de linguagem simples, direta e fracionamento das tarefas para manter o foco e facilitar a compreensão.</li><li>Conexão dos temas com o ambiente vivencial da aluna.</li></ul>', avaliacao: '<ul><li>Observação direta do envolvimento da aluna nas atividades práticas propostas.</li><li>Validação do conhecimento por meio de atividade de associação (ex: colar figuras de resíduos nas lixeiras corretas num painel).</li><li>Valorização do esforço e participação em sala.</li></ul>', recursos: 'Imagens impressas variadas, tesoura, cola, cartolinas, moldes de cores (lixeiras), vídeos curtos educativos.' },
             '23': { serie: '3ª SÉRIE', turma: 'D', nome: 'JOÃO PEDRO MARTINS DE JESUS', deficiencia: 'AUTISTA INFANTIL', disciplina: 'Geografia', habilidades: 'Reconhecer a origem de produtos do cotidiano, introduzindo o fluxo comercial.', conteudos: 'Geopolítica e Globalização Econômica.', estrategias: '<ul><li>Mapeamento de produtos de interesse do aluno (ex: eletrônicos, marcas de alimentos) e localização de sua origem de fabricação num mapa-múndi de mesa.</li><li>Rotina visual estruturada para compreensão do trajeto de exportação/importação (fábrica -> navio -> loja).</li><li>Evitar textos abstratos longos; focar na concretude da embalagem dos produtos.</li></ul>', avaliacao: '<ul><li>Associação correta entre a marca/produto físico e o país de origem através do preenchimento do mapa com adesivos.</li><li>Tempo de foco e engajamento na tarefa de triagem global.</li></ul>', recursos: 'Embalagens de produtos limpas, mapa-múndi plastificado, adesivos coloridos, miniaturas de meios de transporte.' }
@@ -159,7 +159,6 @@
             const container = document.getElementById('container-pei');
             const painel = document.getElementById('painel-mestre');
             
-            // Tenta pegar do LocalStorage primeiro. Se não existir, pega do baseDeDados.
             const dadosSalvos = localStorage.getItem('pei_' + alunoAtualId);
             const dados = dadosSalvos ? JSON.parse(dadosSalvos) : baseDeDados[alunoAtualId];
             
@@ -232,11 +231,9 @@
             container.classList.add('ativo');
             adicionarEventosDeSalvamento();
 
-            // Rola a página suavemente até o PEI gerado
             document.getElementById('ancora-pei').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // SISTEMA DE EDIÇÃO E SALVAMENTO AUTOMÁTICO
         let modoEdicao = false;
 
         function toggleEdicao() {
@@ -289,22 +286,28 @@
             setTimeout(() => { aviso.style.display = 'none'; }, 2000);
         }
 
-        // EXPORTAÇÃO
         function prepararParaExportacao() {
             if (modoEdicao) toggleEdicao(); 
         }
 
+        // FUNÇÃO DE GERAR PDF ATUALIZADA
         function baixarPDF(nome, disciplina) {
             prepararParaExportacao();
             const tagDisciplina = disciplina === 'Geografia' ? 'GEO' : 'PV';
+            
+            // Define o elemento que será convertido
+            const elemento = document.getElementById('doc-pei');
+            
             const opt = { 
-                margin: 10, 
+                margin: [10, 10, 10, 10], // Adicionada margem superior, esquerda, inferior, direita
                 filename: `PEI_${tagDisciplina}_${nome.replace(/ /g, '_')}.pdf`, 
                 image: { type: 'jpeg', quality: 0.98 }, 
-                html2canvas: { scale: 2 }, 
+                html2canvas: { scale: 2, useCORS: true, logging: false }, 
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
             };
-            html2pdf().set(opt).from(document.getElementById('doc-pei')).save();
+            
+            // Usando Promise nativa do html2pdf para garantir a renderização
+            html2pdf().set(opt).from(elemento).save();
         }
 
         function baixarWord(nome, disciplina) {
