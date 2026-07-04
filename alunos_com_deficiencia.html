@@ -290,24 +290,53 @@
             if (modoEdicao) toggleEdicao(); 
         }
 
-        // FUNÇÃO DE GERAR PDF ATUALIZADA
+        // FUNÇÃO DE GERAR PDF ATUALIZADA (CORRIGIDA)
         function baixarPDF(nome, disciplina) {
             prepararParaExportacao();
             const tagDisciplina = disciplina === 'Geografia' ? 'GEO' : 'PV';
-            
+
             // Define o elemento que será convertido
             const elemento = document.getElementById('doc-pei');
-            
+
+            // ------------------------------------------------------------------
+            // CORREÇÃO DO BUG DO PDF EM BRANCO
+            // ------------------------------------------------------------------
+            // Causa: quando o aluno é aberto, a página rola (scrollIntoView) para
+            // mostrar o documento na tela. O html2canvas tira o "print" baseado nas
+            // coordenadas absolutas da janela (viewport), mas por padrão ele NÃO
+            // compensa automaticamente essa rolagem em todos os navegadores/versões.
+            // Resultado: ele fotografa uma área da página que está fora do que foi
+            // realmente rolado (geralmente o topo, que está em branco), gerando
+            // um PDF em branco mesmo com o conteúdo visível na tela.
+            //
+            // Solução: 1) rolar a página para o topo antes de capturar;
+            //          2) informar explicitamente scrollX/scrollY = 0 ao html2canvas;
+            //          3) aguardar um instante (setTimeout) para o navegador
+            //             concluir o reposicionamento antes de iniciar a captura.
+            // ------------------------------------------------------------------
+            window.scrollTo(0, 0);
+
             const opt = { 
-                margin: [10, 10, 10, 10], // Adicionada margem superior, esquerda, inferior, direita
+                margin: [10, 10, 10, 10], // margem superior, esquerda, inferior, direita
                 filename: `PEI_${tagDisciplina}_${nome.replace(/ /g, '_')}.pdf`, 
                 image: { type: 'jpeg', quality: 0.98 }, 
-                html2canvas: { scale: 2, useCORS: true, logging: false }, 
+                html2canvas: { 
+                    scale: 2, 
+                    useCORS: true, 
+                    logging: false,
+                    scrollX: 0,
+                    scrollY: 0,
+                    windowWidth: document.documentElement.scrollWidth,
+                    windowHeight: elemento.scrollHeight
+                }, 
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
             };
             
-            // Usando Promise nativa do html2pdf para garantir a renderização
-            html2pdf().set(opt).from(elemento).save();
+            // Pequeno atraso para garantir que o navegador finalize a rolagem
+            // e o layout antes do html2canvas iniciar a captura.
+            setTimeout(() => {
+                html2pdf().set(opt).from(elemento).save();
+            }, 200);
         }
 
         function baixarWord(nome, disciplina) {
